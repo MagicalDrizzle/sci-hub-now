@@ -1,16 +1,16 @@
 {
-  "manifest_version": 3,
+  "manifest_version": 2,
   "name": "Sci-Hub X Now!",
   "short_name": "sci-hub-x-now",
-  "version": "0.2.2",
-  "author": "Gerry Chen and Orçun Özdemir and Lucas Sterzinger",
+  "version": "0.2.2.2",
+  "author": "Gerry Chen and Or\u00e7un \u00d6zdemir and Lucas Sterzinger",
   "homepage_url": "https://github.com/gchenfc/sci-hub-now",
   "description": "Free access to academic papers with just a single click via sci-hub!",
   "icons": {
     "48": "icons/48x48.png",
     "96": "icons/96x96.png"
   },
-  "action": {
+  "browser_action": {
     "browser_style": true,
     "default_icon": {
       "48": "icons/48x48.png",
@@ -31,7 +31,7 @@
     ]
   },
   "commands": {
-    "_execute_action": {
+    "_execute_browser_action": {
       "suggested_key": {
         "windows": "Alt+A",
         "mac": "Alt+A",
@@ -43,23 +43,29 @@
   "permissions": [
     "activeTab",
     "contextMenus",
-    "scripting",
     "storage"
   ],
   "optional_permissions": [
-    "downloads"
-  ],
-  "optional_host_permissions": [
+    "downloads",
     "https://doi.crossref.org/servlet/query*",
     "*://*/*"
   ],
   "background": {
-    "service_worker": "service_worker.js",
-    "type": "module"
+    "scripts": [
+      "browser-polyfill.js",
+      "background.js",
+      "helper_js/doi-metadata-scraper.js",
+      "helper_js/pdf-link-scraper.js"
+    ]
   },
   "options_page": "options.html",
   "options_ui": {
     "page": "options.html",
     "browser_style": true
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "sci-hub-x-now-mv2fix@magicaldrizzle"
+    }
   }
 }
